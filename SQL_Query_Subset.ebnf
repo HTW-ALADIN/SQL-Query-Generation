@@ -1,0 +1,93 @@
+SELECT <select_list>
+        FROM <table_reference_list>
+    [ <where_clause> ]
+    [ <group_by_clause> ]
+    [ <having_clause> ]
+    [ <order_by_clause> ]
+
+<select_list> ::=
+        <column_specifier> [ { , <column_specifier> } ... ]
+    | [ <aggregate_function>(<column_specifier>) ]
+
+<column_specifier> ::=
+    [table_alias.] <column_specifier>
+
+<aggregate_function> ::=
+    AVG
+    | MAX
+    | MIN
+    | COUNT
+    | SUM
+
+<table_reference_list> ::=
+    [ schema_name. ] table_name [ AS table_alias ]
+    | <joined_table>
+    <joined_table> ::=
+    table_name [ <join_type> ] JOIN table_name <join_specification>
+
+<join_type> ::=
+    INNER
+    | LEFT [OUTER]
+    | RIGHT [OUTER]
+    | FULL [OUTER]
+
+<join_specification> ::=
+    ON <predicate_clause>
+
+<predicate_clause> ::=
+    <predicate>
+    [ <concatenation> <predicate> ]
+
+<concatenation> ::=
+    AND
+    | OR
+
+<predicate_clause> ::=
+    <comparison_predicate>
+    | <between_predicate>
+    | <like_predicate>
+    | <null_predicate>
+    | <boolean_predicate>
+
+<comparison_predicate> ::=
+    <column_specifier> <comp_op> column_value
+
+<comp_op> ::=
+    =
+    | <>
+    | <
+    | >
+    | <=
+    | >=
+
+<between_predicate> ::=
+    <column_specifier> [ NOT ] BETWEEN column_value AND column_value
+
+<like_predicate> ::=
+    <column_specifier> [ NOT ] LIKE [ % ] string [ % ]
+
+<null_predicate> ::=
+    <column_specifier> IS [ NOT ] NULL
+
+<boolean_predicate> ::=
+    <column_specifier> IS [ NOT ] <truth_value>
+
+<truth_value> ::=
+    TRUE
+    | FALSE
+
+<where_clause> ::=
+    WHERE <predicate_clause>
+
+<group_by_clause> ::=
+    GROUP BY <column_specifier> [ { , <column_specifier> } ... ]
+
+<having_clause> ::=
+    HAVING <predicate_clause>
+
+<order_by_clause ::=
+    ORDER BY <column_specifier> <sort_direction>
+
+<sort_direction> ::=
+    ASC
+    | DESC

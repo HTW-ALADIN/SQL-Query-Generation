@@ -1,1 +1,3 @@
-# SQL-Query-Generation
+# Paper X
+
+Official repository for the paper "X"
